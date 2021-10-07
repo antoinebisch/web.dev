@@ -43,6 +43,12 @@
     "github": "beaufortfrancois",
     "image": "image/admin/mXjY3z3JmrispGtu9yn6.jpg"
   },
+  "cwallez": {
+    "country": "FR",
+    "twitter": "DaKangz",
+    "github": "Kangz",
+    "image": "image/vvhSqZboQoZZN9wBvoXq72wzGAf1/mYkUaoNpythq50oIFiQh.jpeg"
+  },
   "mathiasbynens": {
     "country": "DE",
     "homepage": "https://mathiasbynens.be/",
@@ -215,6 +221,10 @@
     "github": "samthor",
     "glitch": "samthor",
     "image": "image/admin/XQIDJD6narW2eA4d141g.jpg"
+  },
+  "stephenstchur": {
+    "country": "US",
+    "image": "image/8WbTDNrhLsU0El80frMBGE4eMCD3/117HjdRQMScu0EouANUl.jpg"
   },
   "rachelandrew": {
     "country": "GB",
@@ -961,9 +971,55 @@
     "twitter": "NicPenaM",
     "image": "image/kns0INkO77RkiEStzHWYrugyWj32/SCSIEb0Qtv6tPWel5tfd.jpeg"
   },
+  "derekherman": {
+    "country": "US",
+    "github": "derekherman",
+    "twitter": "derekherman",
+    "image": "image/8L1ESx211yWBm8uNAgqvUc2GwNk1/Co3mEQ34Z8eAw6lPGx5o.jpg"
+  },
+  "dero": {
+    "country": "CZ",
+    "github": "dero",
+    "twitter": "dero_name",
+    "image": "image/8L1ESx211yWBm8uNAgqvUc2GwNk1/wj3d5QqXh3gIUuR7Ob7w.jpg"
+  },
   "jarhar": {
     "github": "josepharhar",
     "twitter": "josepharhar",
     "image": "image/ahMMPwVRwAdp0gFdY0zZnncYdsm1/3i0rkOVNKJImIy1UWvyC.jpeg"
+  },
+  "majido": {
+    "github": "majido",
+    "twitter": "majido",
+    "image": "image/ZDZVuXt6QqfXtxkpXcPGfnygYjd2/0uSIZyBE7DIwZ3bGnPgz.jpg"
+  },
+  "flackr": {
+    "twitter": "flackrw",
+    "github": "flackr",
+    "image": "image/ZDZVuXt6QqfXtxkpXcPGfnygYjd2/OoCXp829hcVrzCEmjzSd.jpg"
+  },
+  "dandclark": {
+    "twitter": "dandclark1",
+    "github": "dandclark",
+    "country": "US",
+    "image": "image/ZDZVuXt6QqfXtxkpXcPGfnygYjd2/lYPo8w4ZwA465hg323uT.jpg"
+  },
+  "michaelscharnagl": {
+    "twitter": "justmarkup",
+    "country": "DE",
+    "image": "image/ZDZVuXt6QqfXtxkpXcPGfnygYjd2/OZvyDgCkUQAIA87UJV7A.jpg"
+  },
+  "leenasohoni":{
+    "image": "image/vgdbNJBYHma2o62ZqYmcnkq3j0o1/VXCjCzLEGWApTkZkNZkR.JPG"
+  },
+  "jackjey": {
+    "github": "JackJey",
+    "image": "image/PV7xjXdOKHP8LWt9XhstsToJeK82/O5CMzBRhiNQelJ5Rkzv0.jpg"
+  },
+  "tcoustillac": {
+    "github": "tcoustil",
+    "homepage": "https://www.linkedin.com/in/tcoustillac/",
+    "country": "FR",
+    "image": "image/16kgsueJSCPH4556d9XWWWENbk12/N6sroCi4an6S9ak9XttX.jpg"
   }
 }

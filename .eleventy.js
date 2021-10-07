@@ -32,7 +32,9 @@ const AuthorsDate = require('./src/site/_includes/components/AuthorsDate');
 const Banner = require('./src/site/_includes/components/Banner');
 const Blockquote = require('./src/site/_includes/components/Blockquote');
 const Breadcrumbs = require('./src/site/_includes/components/Breadcrumbs');
+const BrowserCompat = require('./src/site/_includes/components/BrowserCompat');
 const CodelabsCallout = require('./src/site/_includes/components/CodelabsCallout');
+const CodePattern = require('./src/site/_includes/components/CodePattern');
 const Codepen = require('./src/site/_includes/components/Codepen');
 const Compare = require('./src/site/_includes/components/Compare');
 const CompareCaption = require('./src/site/_includes/components/CompareCaption');
@@ -41,10 +43,12 @@ const DetailsSummary = require('./src/site/_includes/components/DetailsSummary')
 const EventTable = require('./src/site/_includes/components/EventTable');
 const Glitch = require('./src/site/_includes/components/Glitch');
 const Hero = require('./src/site/_includes/components/Hero');
+const includeRaw = require('./src/site/_includes/components/includeRaw');
 const IFrame = require('./src/site/_includes/components/IFrame');
 const {Img, generateImgixSrc} = require('./src/site/_includes/components/Img');
 const Instruction = require('./src/site/_includes/components/Instruction');
 const Label = require('./src/site/_includes/components/Label');
+const LanguageList = require('./src/site/_includes/components/LanguageList');
 const Meta = require('./src/site/_includes/components/Meta');
 const PathCard = require('./src/site/_includes/components/PathCard');
 const SignPosts = require('./src/site/_includes/components/SignPosts');
@@ -86,7 +90,6 @@ const strip = require('./src/site/_filters/strip');
 const stripBlog = require('./src/site/_filters/strip-blog');
 const getPaths = require('./src/site/_filters/get-paths');
 const navigation = require('./src/site/_filters/navigation');
-const padStart = require('./src/site/_filters/pad-start');
 const {minifyJs} = require('./src/site/_filters/minify-js');
 const {cspHash, getHashList} = require('./src/site/_filters/csp-hash');
 
@@ -102,7 +105,7 @@ const {updateSvgForInclude} = require('webdev-infra/filters/svg');
 const {toc: courseToc} = require('webdev-infra/filters/toc');
 
 // Creates a global variable for the current __dirname to make including and
-// working with files in the pattern library a little easier
+// working with files in the component library a little easier
 global.__basedir = __dirname;
 
 module.exports = function (config) {
@@ -122,7 +125,7 @@ module.exports = function (config) {
     wrapper: 'div',
     wrapperClass: 'w-toc__list',
     ul: true,
-    flat: true,
+    flat: false,
   });
 
   // ----------------------------------------------------------------------------
@@ -149,6 +152,20 @@ module.exports = function (config) {
   // to quickly find collection items without looping.
   config.addCollection('memoized', (collection) => {
     return memoize(collection.getAll());
+  });
+
+  // Filters through all collection items and finds content that has
+  // CSS_ORIGIN set to 'next'. This allows shortcodes to determine if we
+  // are in a design system context or a legacy context
+  config.addCollection('designSystemGlobals', (collection) => {
+    global.__designSystemPaths = new Set(
+      collection
+        .getAll()
+        .filter(({data}) => data.CSS_ORIGIN === 'next')
+        .map(({filePathStem}) => filePathStem),
+    );
+
+    return global.__designSystemPaths;
   });
 
   // ----------------------------------------------------------------------------
@@ -178,7 +195,6 @@ module.exports = function (config) {
   config.addFilter('strip', strip);
   config.addFilter('courseToc', courseToc);
   config.addFilter('updateSvgForInclude', updateSvgForInclude);
-  config.addFilter('padStart', padStart);
   config.addNunjucksAsyncFilter('minifyJs', minifyJs);
   config.addFilter('cspHash', cspHash);
 
@@ -194,8 +210,10 @@ module.exports = function (config) {
   config.addPairedShortcode('Banner', Banner);
   config.addPairedShortcode('Blockquote', Blockquote);
   config.addShortcode('Breadcrumbs', Breadcrumbs);
+  config.addNunjucksAsyncShortcode('BrowserCompat', BrowserCompat);
   config.addShortcode('CodelabsCallout', CodelabsCallout);
   config.addShortcode('Codepen', Codepen);
+  config.addShortcode('CodePattern', CodePattern);
   config.addPairedShortcode('Compare', Compare);
   config.addPairedShortcode('CompareCaption', CompareCaption);
   config.addPairedShortcode('Details', Details);
@@ -206,6 +224,7 @@ module.exports = function (config) {
   config.addShortcode('Img', Img);
   config.addShortcode('Instruction', Instruction);
   config.addPairedShortcode('Label', Label);
+  config.addShortcode('LanguageList', LanguageList);
   config.addShortcode('Meta', Meta);
   config.addShortcode('PathCard', PathCard);
   config.addShortcode('SignPosts', SignPosts);
@@ -213,6 +232,7 @@ module.exports = function (config) {
   config.addShortcode('Tooltip', Tooltip);
   config.addShortcode('Video', Video);
   config.addShortcode('YouTube', YouTube);
+  config.addShortcode('includeRaw', includeRaw);
 
   // This table is used for the web.dev/LIVE event, and should be taken down
   // when the event is over or we no longer use it.
